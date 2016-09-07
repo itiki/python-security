@@ -3,7 +3,6 @@ import time
 import socket
 
 
-
 class ExpRedis(object):
 
     def __init__(self):

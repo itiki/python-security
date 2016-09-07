@@ -32,5 +32,3 @@ class GubaPipeline(object):
             post = self.db[item['stock_num']]
             # first get key words, then plus them ,then store
             post.insert({'ask_time':item['ask_time'],  'replys_data':item['replys_data']})
-
-
