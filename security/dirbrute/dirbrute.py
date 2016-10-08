@@ -22,7 +22,6 @@ class DirBrute(object):
 
     def __init__(self, threads_num, domain):
 
-
         self.in_queue = Queue()
         for name in open('dir.txt', 'r'):
             name = domain + name.strip()
@@ -48,6 +47,7 @@ class DirBrute(object):
 
                 url = self.in_queue.get()
                 response = requests.get(url)
+                time.sleep(2)
                 if response.status_code == 200:
                     cprint(url + ' ' + str(response.status_code))
                 # else:
@@ -118,7 +118,8 @@ def main():
         sys.exit()
 
     subbrute = DirBrute(options.threads_nums, options.domain)
-    subbrute.run()
+    subbrute.brute_names()
+    # subbrute.run()
 
 
 if __name__ == '__main__':

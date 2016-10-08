@@ -128,10 +128,19 @@ def test():
                     help='this is a tmp help')
     parser.add_option_group(group)
     options, args = parser.parse_args()
+
+
+
+def test2():
+    import uu
+
+    data = open('tmp', 'rb')
+    out_file = open('out', 'wb')
+    print uu.decode(data, out_file, mode='wb')
     
 
 def main():
-    test()
+    test2()
 
 
 if __name__ == '__main__':
