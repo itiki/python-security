@@ -46,8 +46,9 @@ class DirBrute(object):
             try:
 
                 url = self.in_queue.get()
+                print 'getting %s' % url
                 response = requests.get(url)
-                time.sleep(2)
+                # time.sleep(2)
                 if response.status_code == 200:
                     cprint(url + ' ' + str(response.status_code))
                 # else:
@@ -118,6 +119,7 @@ def main():
         sys.exit()
 
     subbrute = DirBrute(options.threads_nums, options.domain)
+    print 'initial complete...'
     subbrute.brute_names()
     # subbrute.run()
 
