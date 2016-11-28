@@ -1,4 +1,0 @@
-  File "test.py", line 116
-    print get_shell(url,key,host)
-                  ^
-SyntaxError: invalid syntax

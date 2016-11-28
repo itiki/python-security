@@ -26,6 +26,7 @@ def get_data():
         
         table_data = []
         url = url_raw % (page,)
+        # print ('getting page %d...' % page)
         response = requests.get(url)
         html = etree.HTML(response.content)
 
@@ -44,6 +45,8 @@ def get_data():
                 info['company_href'] = '<a href="%s%s">前往</a>' % (site, company[0].get('href'))
 
                 tmp_date_address = date_address[0].text.strip().split()
+                if len(tmp_date_address) == 1:
+                    break
                 raw_date = tmp_date_address[0]
                 info['raw_date'] = raw_date
                 raw_address = tmp_date_address[1]
@@ -69,6 +72,11 @@ def get_data():
     fp.write(pickle_data)
     fp.close()
 
+def trans_date(x):
+    if len(x) == 1:
+        return '0' + x
+    else:
+        return x
 
 def read_data():
 
@@ -79,8 +87,14 @@ def read_data():
     title_data = ['公司名称', '宣讲会时间', '宣讲会地点', '就业网地址']
     table_data.append(title_data)
     today = datetime.datetime.today()
-    input_date = str(today.month) + str(today.day)
+    # f = lambda x: len(x) == 1 ? '0' + x : 
+    input_date = trans_date(str(today.month)) + trans_date(str(today.day))
+    # print (input_date)
+    # input('wait...')
 
+    # while True:
+        # input_date = input('date:')
+    print (input_date)
     for corp in sorted_data:
         tmp_data = []
         # str_date = str(corp['date_num'])
@@ -108,11 +122,12 @@ def read_data():
             content += '<td>' + row + '</td>\n'
         content += '</tr>'
     msg_content = msg_content % content
+        # print (msg_content)
+        # input('wait...')
     # print msg_content
     # to_addrs = []
-    to_addrs = ['daitaomail@gmail.com', '876247994@qq.com', '764668301@qq.com', '893142912@qq.com', '1617479714@qq.com', '383852346@qq.com', '727258362@qq.com', '2686792916@qq.com']
-    # to_addrs = ['zhangchuan1210@outlook.com', '727258362@qq.com']
-    # to_addrs = ['daitaomail@gmail.com']
+    to_addrs = ['daitaomail@gmail.com', '876247994@qq.com', '764668301@qq.com', '893142912@qq.com', '1617479714@qq.com', '383852346@qq.com', '727258362@qq.com', '2686792916@qq.com', '1494838847@qq.com']
+    # to_addrs = ['1494838847@qq.com']
     # subject = '2016年%d月%d日宣讲会信息(修正版)' % (today.month, today.day)
     subject = '2016年%d月%d日宣讲会信息' % (today.month, today.day)
     msg_type = 'html'
