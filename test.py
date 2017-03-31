@@ -12,6 +12,8 @@ import math
 import base64
 import urllib
 import sys
+from lxml import html
+from pyquery import PyQuery as pq
 
 from optparse import OptionParser 
 from optparse import OptionGroup
@@ -112,17 +114,42 @@ def test():
     options, args = parser.parse_args()
 
 
+class Testim(object):
+   
+    # clo = clo
 
-def test2():
-    return [1, 2, 3, 4]
-    # for i in range(10):
-        # response = requests.get('http://www.baidu.com')
-        # print (response.status_code)
-    
+    def __ini__(self):
+        import colorama 
+        self.clo = colorama
+        # pass
+        # clo = clo
+
+    def test(self):
+        # import colorama
+        print self.clo.Fore.RED + 'this is a test line'
+
+    def test2(self):
+        import colorama
+        # print colorama.Fore.RED + 'this is a test line'
+
+    def test3(self):
+        print 'this is in test3'
+
+
 def main():
-    a = test2()
-    print (type(a))
-    # runThreads(5, test2)
+    url = 'http://cnki5.cnkivip.checkpass.net/queryreport.html?tid=2657840769589744'
+    req = requests.get(url)
+    doc = pq(req.content)
+    # print type(req.text)
+    # print req.text
+    # tree = html.fromstring(req.content)
+    # result = tree.xpath('/html/body/div[2]/div/div[2]/table/tbody/tr/td[4]/spana')
+    # print result
+    # if u'正在检测' in req.text:
+        # print 'checking....'
+    # else:
+        # print 'please wait...'
+    
 
 
 if __name__ == '__main__':

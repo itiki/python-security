@@ -136,10 +136,6 @@ def read_data():
         sendmail(to_addr, subject, msg_content, msg_type)
         # time.sleep(60)
 
-        # table = AsciiTable(table_data)
-        # print table.table
-        # print "total: ", len(table_data)
-
 
 if __name__ == '__main__':
     os.system('clear')
