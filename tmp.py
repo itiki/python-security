@@ -3,7 +3,7 @@ from penework import __version__
 
 __version__ = 'test'
 
-print __version__
+# print __version__
 
 import os
 from pymongo import MongoClient

@@ -32,7 +32,8 @@ class ZoomEye(object):
             '--proxy-type=https'
             ]
 
-        self.driver = webdriver.PhantomJS(service_args=service_args)
+        # self.driver = webdriver.PhantomJS(service_args=service_args)
+        self.driver = webdriver.PhantomJS()
 
         # fist step, get cookie by request url
         url = 'https://www.zoomeye.org/accounts/login/?next=/'
