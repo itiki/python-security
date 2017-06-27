@@ -1,0 +1,13 @@
+apache:
+    build: ./debian
+    container_name: apache
+    ports:
+        - "80:80"
+    links:
+        - "php55"
+    volumes:
+        - /owaspbwa:/var/www/html
+
+php55:
+    build: ./php
+    container_name: php
